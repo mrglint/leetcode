@@ -5,7 +5,7 @@ package com.mrglint.leetcode.solution11;
  * @since 2019-10-17 08:56
  */
 public class Solution {
-    public int maxArea(int[] height) {
+    public int maxArea1(int[] height) {
         int maxArea = 0;
         int i = 0;
         int j = height.length - 1;
@@ -17,6 +17,18 @@ public class Solution {
                 i++;
             } else {
                 j--;
+            }
+        }
+        return maxArea;
+    }
+
+    public int maxArea(int[] height) {
+        int maxArea = 0;
+        for (int i = 0; i < height.length - 1; i++) {
+            for (int j = i + 1; j < height.length; j++) {
+                int minHeight = Math.min(height[i], height[j]);
+                int area = (j - i) * minHeight;
+                maxArea = Math.max(maxArea, area);
             }
         }
         return maxArea;

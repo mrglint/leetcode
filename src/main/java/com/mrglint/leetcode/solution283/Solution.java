@@ -9,7 +9,7 @@ import java.util.Arrays;
  */
 public class Solution {
 
-    public void moveZeroes(int[] nums) {
+    public void moveZeroes1(int[] nums) {
         // 指向非0位置
         int j = 0;
         for (int i = 0; i < nums.length; i++) {
@@ -19,6 +19,18 @@ public class Solution {
                     nums[i] = 0;
                 }
                 j++;
+            }
+        }
+    }
+
+    public void moveZeroes(int[] nums) {
+        int notZeroIndex = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                int temp = nums[notZeroIndex];
+                nums[notZeroIndex] = nums[i];
+                nums[i] = temp;
+                notZeroIndex++;
             }
         }
     }

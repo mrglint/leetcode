@@ -60,8 +60,6 @@ public class Solution {
     public void rotate4(int[] nums, int k) {
         k = k % nums.length;
         int count = 0;
-        // 为什么按照以下方式移动了nums.length次后，所有元素都在正确位置上？
-        // 从第一个元素开始，挪动。当回到原点的时候，会有n / k 个元素到达正确位置
         for (int start = 0; count < nums.length; start++) {
             // 下一个要被替换位置的指针
             int next = (start + k) % nums.length;
@@ -102,8 +100,8 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int[] nums = new int[]{1, 2, 3, 4, 5, 6, 7};
-        solution.rotate(nums, 3);
+        int[] nums = new int[]{1, 2, 3, 4};
+        solution.rotate4(nums, 3);
         System.out.println(Arrays.toString(nums));
     }
 

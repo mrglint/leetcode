@@ -6,16 +6,29 @@ package com.mrglint.leetcode.solution70;
  */
 public class Solution {
 
-    // f(n) = f(n - 1) + f(n - 2)
+    /**
+     * 加缓存的递归调用
+     */
     public int climbStairs1(int n) {
-        if (n == 1) {
+        int[] memory = new int[n];
+        return climbStairs1(n, memory);
+    }
+    private int climbStairs1(int i, int[] memory) {
+        if (i == 1) {
+            memory[i - 1] = 1;
             return 1;
         }
-        if (n == 2) {
+        if (i == 2) {
+            memory[i - 1] = 2;
             return 2;
         }
-        return climbStairs(n - 1) + climbStairs(n - 2);
+        if (memory[i - 1] > 0) {
+            return memory[i - 1];
+        }
+        memory[i - 1] = climbStairs1(i - 1, memory) + climbStairs1(i - 2, memory);
+        return memory[i - 1];
     }
+
 
     public int climbStairs(int n) {
         if (n == 1) {
@@ -38,7 +51,7 @@ public class Solution {
     public static void main(String[] args) {
         Solution solution = new Solution();
         for (int i = 1; i<10; i++) {
-            System.out.print(solution.climbStairs(i));
+            System.out.print(solution.climbStairs1(i));
             System.out.print(", ");
         }
     }
