@@ -2,7 +2,6 @@ package com.mrglint.leetcode.week02.solution77;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 /**
  * @author luhuancheng
@@ -11,23 +10,21 @@ import java.util.Stack;
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> result = new ArrayList<>();
-
-        if (n <= 0 || k <= 0 || n < k) {
-            return result;
-        }
-        findCombinations(n, k, 1, new Stack<>(), result);
+        combine(1, n, k, new ArrayList<>(), result);
         return result;
     }
 
-    private void findCombinations(int n, int k, int begin, Stack<Integer> pre, List<List<Integer>> result) {
-        if (pre.size() == k) {
-            result.add(new ArrayList<>(pre));
+    private void combine(int begin, int n, int k, List<Integer> subResult, List<List<Integer>> result) {
+        // 组合个数达到要求
+        if (subResult.size() == k) {
+            result.add(subResult);
+            return;
         }
-
+        // 选中当前数值，带上当前层的中间结果，继续往下一层递归
         for (int i = begin; i <= n; i++) {
-            pre.add(i);
-            findCombinations(n, k, i + 1, pre, result);
-            pre.pop();
+            subResult.add(i);
+            combine(i + 1, n, k, new ArrayList<>(subResult), result);
+            subResult.remove(subResult.size() - 1);
         }
     }
 }
