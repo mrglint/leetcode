@@ -10,14 +10,15 @@ public class FindNotOrderIndex {
         int hi = data.length - 1;
         while (lo < hi) {
             int mid = lo + (hi - lo) / 2;
-            // 中间元素大于最后一个元素，说明[mid, data.length)是有序的，排除掉
-            if (data[mid] < data[data.length - 1]) {
-                hi = mid;
-            } else {
+            // 中间数 > 尾端数，说明无序在右端
+            if (data[mid] > data[hi]) {
                 lo = mid + 1;
+            } else {
+                // 中间数 <= 尾端数，说明无序在左端
+                hi = mid;
             }
         }
-        return lo;
+        return hi;
     }
 
     public static void main(String[] args) {
