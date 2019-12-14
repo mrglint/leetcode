@@ -38,6 +38,33 @@ public class Solution {
     }
 
     /**
+     * 动态规划解法: 原问题的解由子问题的最优解构成
+     *
+     * @param coins
+     * @param amount
+     * @return
+     */
+    public int coinChangeDp(int[] coins, int amount) {
+        int[] dpTable = new int[amount + 1];
+        // 初始化
+        for (int i = 0; i < dpTable.length; i++) {
+            dpTable[i] = amount + 1;
+        }
+        // 特殊处理，选择0个硬币时的总额为0
+        dpTable[0] = 0;
+
+        // 考察1 ~ amount种可能的总额
+        for (int i = 1; i <= amount; i++) {
+            for (int coin : coins) {
+                if (coin <= i) {
+                    dpTable[i] = Math.min(dpTable[i], dpTable[i - coin] + 1);
+                }
+            }
+        }
+        return dpTable[amount] > amount ? -1 : dpTable[amount];
+    }
+
+    /**
      * 加缓存递归
      * @param coins
      * @param amount
@@ -75,7 +102,7 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        int i = solution.coinChange(new int[]{1, 2, 5}, 100);
+        int i = solution.coinChangeDp(new int[]{10, 9, 1}, 18);
         System.out.println(i);
     }
 
