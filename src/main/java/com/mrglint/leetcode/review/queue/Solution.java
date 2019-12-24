@@ -1,4 +1,4 @@
-package com.mrglint.leetcode.review.bfs;
+package com.mrglint.leetcode.review.queue;
 
 import java.util.*;
 
