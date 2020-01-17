@@ -1,4 +1,4 @@
-package com.mrglint.leetcode.review.recursion;
+package com.mrglint.leetcode.review.recursioni;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.mrglint.leetcode.review.recursion;
+package com.mrglint.leetcode.review.recursioni;
 
 import com.mrglint.leetcode.ListNode;
 
