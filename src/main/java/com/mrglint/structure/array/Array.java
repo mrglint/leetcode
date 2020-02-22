@@ -21,6 +21,11 @@ public class Array<E> {
         size = 0;
     }
 
+    public Array(E[] array) {
+        data = (E[]) new Object[array.length];
+        size = array.length;
+    }
+
     public Array() {
         this(10);
     }
@@ -150,5 +155,15 @@ public class Array<E> {
         System.out.println(array);
         array.addLast(10);
         System.out.println(array);
+    }
+
+    public void swap(int i, int j) {
+        E e = data[i];
+        data[i] = data[j];
+        data[j] = e;
+    }
+
+    public void set(int index, E e) {
+        data[index] = e;
     }
 }
