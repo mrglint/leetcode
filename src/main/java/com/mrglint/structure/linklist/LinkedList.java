@@ -114,6 +114,23 @@ public class LinkedList<E> {
         return retNode.e;
     }
 
+    /**
+     * 删除链表中所有节点值与e相等的节点
+     * @param e
+     */
+    public void removeElement(E e) {
+        Node<E> prev = dummyHead;
+        while (prev != null) {
+            if (prev.next != null && prev.next.e.equals(e)) {
+                Node<E> delNode = prev.next;
+                prev.next = prev.next.next;
+                delNode.next = null;
+                size--;
+            }
+            prev = prev.next;
+        }
+    }
+
     public E removeFirst() {
         return remove(0);
     }
@@ -149,6 +166,11 @@ public class LinkedList<E> {
         list.removeLast();
         System.out.println(list);
         list.add(2, 100);
+        list.addFirst(100);
         System.out.println(list);
+        list.removeElement(100);
+
+        System.out.println(list);
+        System.out.println(list.getSize());
     }
 }
