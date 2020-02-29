@@ -56,7 +56,7 @@ public class MergeSort implements SortFunction {
     }
 
     public static void main(String[] args) {
-        int[] data = SortUtils.generateNearlyOrderArray(100000, 0);
+        int[] data = SortUtils.generateRandomArray(100000, 0, 100000);
         SortUtils.compareSort(data, Arrays.asList(new MergeSort(), new InsertSort()));
     }
 }

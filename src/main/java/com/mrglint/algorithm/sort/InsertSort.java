@@ -10,22 +10,12 @@ public class InsertSort implements SortFunction {
 
 //    @Override
 //    public void sort(int[] data) {
-//        // i表示要插入的元素
+//        // 由于[0, 1)已经是有序的了，因此从第二个元素开始遍历
 //        for (int i = 1; i < data.length; i++) {
-//            int insertValue = data[i];
-//            int j;
-//            // j表示第一个要比较的元素
-//            for (j = i - 1; j >= 0; j--) {
-//                if (insertValue < data[j]) {
-//                    data[j + 1] = data[j];
-//                } else {
-//                    break;
-//                }
+//            for (int j = i; j > 0 && data[j - 1] > data[j]; j--) {
+//                // data[j - 1] > data[j]
+//                SortUtils.swap(data, j, j - 1);
 //            }
-//            // 此时分两种情况：
-//            // 1. j < 0 说明前面没有元素可以比较了，data[0] = insertValue;
-//            // 2. data[j] <= insertValue 说明此时的data[j]在正确的位置，data[j + 1] 就是要插入的位置
-//            data[j + 1] = insertValue;
 //        }
 //    }
 
@@ -46,7 +36,7 @@ public class InsertSort implements SortFunction {
     }
 
     public static void main(String[] args) {
-        int[] data = SortUtils.generateNearlyOrderArray(10000, 100);
+        int[] data = SortUtils.generateNearlyOrderArray(100000, 0);
         SortUtils.compareSort(data, Arrays.asList(new SelectSort(), new InsertSort()));
     }
 }

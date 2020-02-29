@@ -12,8 +12,9 @@ public class InplaceHeapSort implements SortFunction {
 
     @Override
     public void sort(int[] data) {
-        // 从第一个非叶子节点开始，逐步将数组堆化
-        for (int i = (data.length - 1) / 2; i >= 0; i--) {
+        // 从第一个非叶子节点开始，逐步将数组堆化.
+        // 数组索引0的位置表示堆顶，那么第一个非叶子节点的索引计算方式：parent = (i - 1) / 2
+        for (int i = (data.length - 1 - 1) / 2; i >= 0; i--) {
             shiftDown(data, data.length, i);
         }
         // 交换堆顶元素和最后一个未排序的元素的位置
