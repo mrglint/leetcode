@@ -16,13 +16,13 @@ public class Solution {
         int zero = -1;
         int two = nums.length;
         for (int i = 0; i < two;) {
-            if (nums[i] == 1) {
-                i++;
-            } else if (nums[i] == 0) {
+            if (nums[i] == 0) {
                 int temp = nums[zero + 1];
                 nums[zero + 1] = nums[i];
                 nums[i] = temp;
                 zero++;
+                i++;
+            } else if (nums[i] == 1) {
                 i++;
             } else {
                 int temp = nums[two - 1];
