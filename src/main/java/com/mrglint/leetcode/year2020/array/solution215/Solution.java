@@ -17,9 +17,7 @@ public class Solution {
     private int findKthLargest(int[] nums, int lo, int hi, int k) {
         // 随机化标定点
         int randomIndex = random.nextInt(hi - lo + 1) + lo;
-        int temp = nums[randomIndex];
-        nums[randomIndex] = nums[lo];
-        nums[lo] = temp;
+        swap(nums, lo, randomIndex);
 
         // 标定点值
         int value = nums[lo];
