@@ -13,18 +13,19 @@ public class Solution {
         int lo = 0;
         int hi = -1;
 
-        int result = Integer.MIN_VALUE;
+        int result = 0;
 
         while (lo < s.length()) {
             if (hi + 1 < s.length() && hash[s.charAt(hi + 1)] == 0) {
                 hash[s.charAt(hi + 1)]++;
                 hi++;
-                result = Math.max(result, hi - lo + 1);
             } else {
                 hash[s.charAt(lo)]--;
                 lo++;
             }
+
+            result = Math.max(result, hi - lo + 1);
         }
-        return result == Integer.MIN_VALUE ? 0 : result;
+        return result;
     }
 }
