@@ -64,7 +64,8 @@ public class TwoPointSolution {
 
     public static void main(String[] args) {
         TwoPointSolution solution = new TwoPointSolution();
-        List<List<Integer>> lists = solution.threeSum(new int[]{0, 0, 0});
+        // -3, -1, 0, 1, 2, 3
+        List<List<Integer>> lists = solution.threeSum(new int[]{-1, 2, 3, -3, 1, 0});
         System.out.println(lists);
 
     }
