@@ -2,8 +2,6 @@ package com.mrglint.leetcode.year2020.linkedlist.solution328;
 
 import com.mrglint.leetcode.ListNode;
 
-import javax.xml.transform.SourceLocator;
-
 /**
  * @author luhuancheng
  * @since 2020-03-20 21:50
@@ -16,7 +14,7 @@ public class Solution {
      */
     public ListNode oddEvenList(ListNode head) {
         if (head == null || head.next == null) {
-            return null;
+            return head;
         }
 
         ListNode odd = head;
