@@ -31,10 +31,40 @@ public class Solution {
         return head;
     }
 
+    /**
+     * 这种写法太难懂了
+     * @param head
+     * @return
+     */
+    public ListNode oddEvenList2(ListNode head) {
+        if (head == null) {
+            return null;
+        }
+
+        ListNode begin = head;
+        ListNode p = head;
+        ListNode temp = null;
+        int count = 1;
+
+        while (p.next != null) {
+            if ((count + 1) % 2 != 0) {
+                temp = p.next;
+                p.next = temp.next;
+                temp.next = begin.next;
+                begin.next = temp;
+                begin = begin.next;
+            } else {
+                p = p.next;
+            }
+            count++;
+        }
+        return head;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         ListNode data = new ListNode(new int[]{1, 2, 3, 4, 5});
-        ListNode listNode = solution.oddEvenList(data);
+        ListNode listNode = solution.oddEvenList2(data);
         System.out.println(data);
         System.out.println(listNode);
     }
