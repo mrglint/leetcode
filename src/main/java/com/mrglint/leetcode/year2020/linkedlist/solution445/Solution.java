@@ -12,7 +12,6 @@ public class Solution {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         Stack<Integer> l1Stack = new Stack<>();
         Stack<Integer> l2Stack = new Stack<>();
-        Stack<Integer> resultStack = new Stack<>();
 
         while (l1 != null) {
             l1Stack.push(l1.val);
@@ -23,30 +22,25 @@ public class Solution {
             l2 = l2.next;
         }
 
-        ListNode dummyHead = new ListNode(-1);
-        ListNode p = dummyHead;
-        int carry = 0;
+        ListNode list = new ListNode(0);
+        int sum = 0;
         while (!l1Stack.isEmpty() || !l2Stack.isEmpty()) {
-            int sum;
-            if (!l1Stack.isEmpty() && !l2Stack.isEmpty()) {
-                sum = carry + l1Stack.pop() + l2Stack.pop();
-            } else if (l1Stack.isEmpty()) {
-                sum = carry + l2Stack.pop();
-            } else {
-                sum = carry + l1Stack.pop();
+            if (!l1Stack.isEmpty()) {
+                sum += l1Stack.pop();
             }
-            carry = sum / 10;
-            resultStack.push(sum % 10);
+            if (!l2Stack.isEmpty()) {
+                sum += l2Stack.pop();
+            }
+            // 维护链表
+            list.val = sum % 10;
+            // 链表头节点设置为进位值，方便返回时判断是否需要保留头节点
+            ListNode head = new ListNode(sum / 10);
+            head.next = list;
+            list = head;
+
+            sum /= 10;
         }
 
-        if (carry != 0) {
-            resultStack.push(carry);
-        }
-
-        while (!resultStack.isEmpty()) {
-            p.next = new ListNode(resultStack.pop());
-            p = p.next;
-        }
-        return dummyHead.next;
+        return list.val == 0 ? list.next : list;
     }
 }
