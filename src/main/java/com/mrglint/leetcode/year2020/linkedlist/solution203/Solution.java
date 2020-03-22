@@ -9,18 +9,11 @@ import com.mrglint.leetcode.ListNode;
 public class Solution {
     public ListNode removeElements(ListNode head, int val) {
 
-        // 删除头节点等于val的情况
-        while (head != null && head.val == val) {
-            ListNode delNode = head;
-            head = delNode.next;
-        }
-
-        if (head == null) {
-            return null;
-        }
+        ListNode dummyHead = new ListNode(0);
+        dummyHead.next = head;
 
         // 删除链表中间节点等于val的情况
-        ListNode cur = head;
+        ListNode cur = dummyHead;
         while (cur.next != null) {
             if (cur.next.val == val) {
                 // 删除节点
@@ -30,6 +23,6 @@ public class Solution {
                 cur = cur.next;
             }
         }
-        return head;
+        return dummyHead.next;
     }
 }
