@@ -26,7 +26,7 @@ public class Solution {
             while (size-- > 0) {
                 String s = queue.poll();
                 if (Objects.equals(s, endWord)) {
-                    return res + 1;
+                    return res;
                 }
                 // 变换字符串
                 for (int i = 0; i < s.length(); i++) {
