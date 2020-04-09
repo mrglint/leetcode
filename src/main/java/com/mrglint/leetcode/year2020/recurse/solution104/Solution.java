@@ -1,4 +1,4 @@
-package com.mrglint.leetcode.year2020.binarytree.solution104;
+package com.mrglint.leetcode.year2020.recurse.solution104;
 
 import com.mrglint.leetcode.TreeNode;
 
