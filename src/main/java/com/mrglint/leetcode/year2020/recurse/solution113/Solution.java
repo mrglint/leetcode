@@ -26,15 +26,18 @@ public class Solution {
     private void pathSum(TreeNode node, List<List<Integer>> res, List<Integer> subRes, int sum) {
         subRes.add(node.val);
         if (sum == node.val && node.left == null && node.right == null) {
-            res.add(subRes);
+            res.add(new ArrayList<>(subRes));
+            // 回溯前，恢复原有数据
+            subRes.remove(subRes.size() - 1);
             return;
         }
         if (node.left != null) {
-            pathSum(node.left, res, new ArrayList<>(subRes), sum - node.val);
+            pathSum(node.left, res, subRes, sum - node.val);
         }
         if (node.right != null) {
-            pathSum(node.right, res, new ArrayList<>(subRes), sum - node.val);
+            pathSum(node.right, res, subRes, sum - node.val);
         }
+        subRes.remove(subRes.size() - 1);
     }
 
 }
