@@ -11,28 +11,38 @@ import java.util.List;
  */
 public class Solution {
     public int sumNumbers(TreeNode root) {
-        List<String> res = new ArrayList<>();
+        List<Integer> res = new ArrayList<>();
         if (root == null) {
             return 0;
         }
-        sumNumbers(root, res, "");
-        return parseAndSum(res);
+
+        sumNumbers(root, res, 0);
+        return res.stream().reduce(0, (a, b) -> a + b);
     }
 
-    private void sumNumbers(TreeNode node, List<String> res, String numString) {
-        numString = numString + node.val;
+    private void sumNumbers(TreeNode node, List<Integer> res, int preNum) {
+        preNum += node.val;
         if (node.left == null && node.right == null) {
-            res.add(numString);
+            res.add(preNum);
+            return;
         }
         if (node.left != null) {
-            sumNumbers(node.left, res, numString);
+            sumNumbers(node.left, res, preNum * 10);
         }
         if (node.right != null) {
-            sumNumbers(node.right, res, numString);
+            sumNumbers(node.right, res, preNum * 10);
         }
     }
 
-    private int parseAndSum(List<String> res) {
-        return res.stream().mapToInt(Integer::valueOf).sum();
+    public static void main(String[] args) {
+        TreeNode root = new TreeNode(4);
+        root.left = new TreeNode(9);
+        root.right = new TreeNode(0);
+        root.left.left = new TreeNode(5);
+        root.left.right = new TreeNode(1);
+
+        Solution solution = new Solution();
+        int i = solution.sumNumbers(root);
+        System.out.println(i);
     }
 }
