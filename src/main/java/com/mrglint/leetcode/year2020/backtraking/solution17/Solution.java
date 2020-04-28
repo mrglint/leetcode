@@ -1,4 +1,4 @@
-package com.mrglint.leetcode.year2020.backtraking;
+package com.mrglint.leetcode.year2020.backtraking.solution17;
 
 import java.util.ArrayList;
 import java.util.Collections;
