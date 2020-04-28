@@ -10,38 +10,33 @@ import java.util.List;
 public class Solution {
     public List<String> restoreIpAddresses(String s) {
         List<String> res = new ArrayList<>();
-
-        int length = s.length();
-        // 0, i  因此 i < 4 取出的字符串长度小于3
-        for (int i = 1; i < 4 && i < length - 2; i++) {
-            // i, j 因此 j < i + 4 取出的字符串长度小于3
-            for (int j = i + 1; j < i + 4 && j < length - 1; j++) {
-                // j, k 因此 k < j + 4 取出的字符串长度小于3
-                for (int k = j + 1; k < j + 4 && k < length; k++) {
-                    String s1 = s.substring(0, i);
-                    String s2 = s.substring(i, j);
-                    String s3 = s.substring(j, k);
-                    String s4 = s.substring(k, length);
-
-                    if (isValid(s1) && isValid(s2) && isValid(s3) && isValid(s4)) {
-                        res.add(s1 + "." + s2 + "." + s3 + "." + s4);
-                    }
-                }
-            }
-        }
+        help(s, res, 0, 4, "");
         return res;
     }
 
-    private boolean isValid(String s) {
-        if (s.length() == 0 || s.length() > 3 || (s.charAt(0) == '0' && s.length() > 1) || Integer.parseInt(s) > 255) {
-            return false;
+    private void help(String s, List<String> res, int index, int remain, String current) {
+        if (remain == 0) {
+            if (index == s.length()) {
+                res.add(current);
+            }
+            return;
         }
-        return true;
-    }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        List<String> strings = solution.restoreIpAddresses("25525511135");
-        System.out.println(strings);
+        // 最多取3位数
+        for (int i = 1; i < 4; i++) {
+            if (index + i > s.length()) {
+                return;
+            }
+            // 取两位的时候，开头为0
+            if (i != 1 && s.charAt(index) == '0') {
+                return;
+            }
+            String temp = s.substring(index, index + i);
+            int val = Integer.parseInt(temp);
+
+            if (val <= 255) {
+                help(s, res, index + i, remain - 1, current + temp + (remain == 1 ? "" : "."));
+            }
+        }
     }
 }
